@@ -43,9 +43,10 @@ class GoogleAuth extends React.Component {
   };
 
   render() {
+    const { isReady } = this.state;
     const { isSignedIn } = this.props.user;
     let msg = "";
-    if (this.state.isReady) {
+    if (isReady) {
       if (isSignedIn) {
         msg = "Logout";
       } else {
@@ -55,7 +56,10 @@ class GoogleAuth extends React.Component {
       msg = "Please wait";
     }
     return (
-      <button className="header__links-link" onClick={this.handleClick}>
+      <button
+        className="header__links-link"
+        onClick={isReady ? this.handleClick : () => {}}
+      >
         {msg}
       </button>
     );

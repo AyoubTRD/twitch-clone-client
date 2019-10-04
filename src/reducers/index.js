@@ -1,8 +1,11 @@
 import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
+
+import { AUTHENTICATE } from "../actions/types";
 
 const loginReducer = (state = {}, action) => {
   switch (action.type) {
-    case "AUTHENTICATE":
+    case AUTHENTICATE:
       const newState = {
         isSignedIn: action.payload.isSignedIn,
         profile: action.payload.profile
@@ -14,5 +17,6 @@ const loginReducer = (state = {}, action) => {
 };
 
 export default combineReducers({
-  user: loginReducer
+  user: loginReducer,
+  form: formReducer
 });
