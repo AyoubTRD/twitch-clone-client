@@ -16,8 +16,8 @@ class App extends Component {
         <Header />
         <Route path="/" exact component={StreamList} />
         <Route path="/stream/show/:id" exact component={StreamShow} />
-        <Route path="/stream/:id/edit" exact component={StreamEdit} />
-        <Route path="/stream/:id/delete" exact component={StreamDelete} />
+        <Route path="/stream/edit" exact component={StreamEdit} />
+        <Route path="/stream/delete" exact component={StreamDelete} />
         <Route path="/stream/create" exact component={StreamCreate} />
       </BrowserRouter>
     );
