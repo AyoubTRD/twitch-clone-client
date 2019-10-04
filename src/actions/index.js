@@ -1,4 +1,5 @@
-import { AUTHENTICATE } from "./types";
+import { AUTHENTICATE, CREATE_STREAM } from "./types";
+import streams from "../api/streams";
 
 export const authenticate = (isSignedIn, info) => {
   info = info.getBasicProfile();
@@ -15,4 +16,12 @@ export const authenticate = (isSignedIn, info) => {
       profile
     }
   };
+};
+
+export const createStream = streamInfo => async dispatch => {
+  await streams.post("/streams", streamInfo);
+  return dispatch({
+    type: CREATE_STREAM,
+    payload: streamInfo
+  });
 };

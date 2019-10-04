@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
 
-import { AUTHENTICATE } from "../actions/types";
+import { AUTHENTICATE, CREATE_STREAM } from "../actions/types";
 
-const loginReducer = (state = {}, action) => {
+const loginReducer = (state = { profile: {} }, action) => {
   switch (action.type) {
     case AUTHENTICATE:
       const newState = {
@@ -16,7 +16,20 @@ const loginReducer = (state = {}, action) => {
   }
 };
 
+const createStream = (state = { isStreaming: false }, action) => {
+  switch (action.type) {
+    case CREATE_STREAM:
+      return {
+        isStreaming: true,
+        info: action.payload
+      };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
+  form: formReducer,
   user: loginReducer,
-  form: formReducer
+  stream: createStream
 });

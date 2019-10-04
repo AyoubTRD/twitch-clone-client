@@ -1,1 +1,2 @@
 export const AUTHENTICATE = "AUTHENTICATE";
+export const CREATE_STREAM = "CREATE_STREAM";

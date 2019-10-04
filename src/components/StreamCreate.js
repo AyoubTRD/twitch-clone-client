@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+
+import { createStream } from "../actions";
 
 const renderInput = ({
   info: { name, id, placeholder, type, label, classes },
-  input
+  input,
+  meta: { error, touched }
 }) => {
-  
   const lastClasses = classes ? `form__input ${classes}` : "form__input";
 
   return (
@@ -16,6 +19,7 @@ const renderInput = ({
         </label>
       ) : null}
       <input
+        autoComplete="off"
         name={name}
         placeholder={placeholder}
         type={type}
@@ -23,13 +27,16 @@ const renderInput = ({
         className={lastClasses}
         {...input}
       />
+      <p className="form__error">{touched ? error : null}</p>
     </span>
   );
 };
 
 class StreamCreate extends Component {
-  onSubmit = ({ title, description }) => {
-    console.log(title, description);
+  onSubmit = formValues => {
+    const { createStream, id } = this.props;
+    const streamInfo = { ...formValues, id };
+    createStream(streamInfo);
   };
 
   render() {
@@ -49,7 +56,7 @@ class StreamCreate extends Component {
                 name: "title",
                 placeholder: "title",
                 type: "text",
-                id: "title",
+                id: "title"
               }}
             />
           </div>
@@ -74,6 +81,29 @@ class StreamCreate extends Component {
   }
 }
 
-export default reduxForm({
-  form: "streamCreate"
+const validate = ({ title, description }) => {
+  const errors = {};
+  if (!title) {
+    errors.title = "You must provide a title";
+  }
+  if (!description) {
+    errors.description = "You must provide a description";
+  }
+  return errors;
+};
+
+const compWrap = reduxForm({
+  form: "streamCreate",
+  validate
 })(StreamCreate);
+
+const mapStateToProps = ({
+  user: {
+    profile: { id }
+  }
+}) => ({ id });
+
+export default connect(
+  mapStateToProps,
+  { createStream }
+)(compWrap);
