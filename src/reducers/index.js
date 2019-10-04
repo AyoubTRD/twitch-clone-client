@@ -1,14 +1,18 @@
 import { combineReducers } from "redux";
 
-const loginReducer = (state = false, action) => {
+const loginReducer = (state = {}, action) => {
   switch (action.type) {
-    case "LOGIN":
-      return true;
+    case "AUTHENTICATE":
+      const newState = {
+        isSignedIn: action.payload.isSignedIn,
+        profile: action.payload.profile
+      };
+      return newState;
     default:
       return state;
   }
 };
 
 export default combineReducers({
-  loggedIn: loginReducer
+  user: loginReducer
 });
