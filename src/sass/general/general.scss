@@ -1,0 +1,21 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  outline: none;
+}
+html {
+  font-size: 62.5%;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  font-size: 1.6rem;
+  color: $black;
+}
+.clearfix::after {
+  display: table;
+  content: "";
+  clear: both;
+}

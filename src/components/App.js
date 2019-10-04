@@ -7,13 +7,13 @@ import StreamCreate from "./StreamCreate";
 import StreamEdit from "./StreamEdit";
 import StreamDelete from "./StreamDelete";
 
-import Navbar from "./subComponents/Navbar";
+import Header from "./Header";
 
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <Navbar />
+        <Header />
         <Route path="/" exact component={StreamList} />
         <Route path="/stream/show/:id" exact component={StreamShow} />
         <Route path="/stream/:id/edit" exact component={StreamEdit} />

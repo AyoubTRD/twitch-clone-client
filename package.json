@@ -6,14 +6,17 @@
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "sass": "node-sass -w src/sass/main.scss src/css/main.css"
   },
   "eslintConfig": {
     "extends": "react-app"
