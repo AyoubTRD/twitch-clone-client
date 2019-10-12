@@ -32,14 +32,18 @@ class Stream extends React.Component {
     return (
       <div>
         <div className="stream">
-          <Link className="invisi-link" to={`/streams/${id}`} children="" />
+          <Link className="invisi-link" to={`/streams/${id}`} />
 
-          <div className="stream__left">
+          <div
+            className={`stream__left ${
+              ownStream && isSignedIn && userId === id ? "" : "full"
+            }`}
+          >
             <h2 className="stream__title">{title}</h2>
             <p className="stream__description">{description}</p>
           </div>
-          <div className="stream__right">
-            {ownStream && isSignedIn && userId === id ? (
+          {ownStream && isSignedIn && userId === id ? (
+            <div className="stream__right">
               <div className="stream__actions">
                 <Link
                   to="/stream/edit"
@@ -54,8 +58,8 @@ class Stream extends React.Component {
                   Delete
                 </button>
               </div>
-            ) : null}
-          </div>
+            </div>
+          ) : null}
         </div>
         <StreamDelete
           handleDelete={this.handleDelete}

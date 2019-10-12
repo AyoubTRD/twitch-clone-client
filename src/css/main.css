@@ -33,6 +33,9 @@ body {
 .u-center {
   text-align: center; }
 
+.full {
+  width: 100%; }
+
 @keyframes shine {
   from {
     -webkit-mask-position: 150%;
@@ -137,7 +140,7 @@ body {
   width: 300px;
   max-width: 70%;
   border-radius: 10px;
-  box-shadow: 2 2px 0 2px rgba(255, 255, 255, 0.3);
+  box-shadow: 2px 2px 0 2px rgba(255, 255, 255, 0.3);
   margin: 10rem auto;
   text-align: center;
   padding: 2rem 2rem; }
@@ -177,7 +180,7 @@ body {
   .stream__right {
     position: relative;
     text-align: right;
-    z-index: 1;
+    z-index: 0;
     width: 25rem; }
   .stream__actions {
     position: absolute;
@@ -218,7 +221,6 @@ body {
     transform: translateY(-0.5rem); }
 
 .invisi-link {
-  z-index: -1;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -271,4 +273,6 @@ body {
 
 @media only screen and (max-width: 500px) {
   html {
-    font-size: 40%; } }
+    font-size: 40%; }
+  .form__right {
+    width: 30rem; } }
