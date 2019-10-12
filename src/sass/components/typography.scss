@@ -12,10 +12,16 @@
   &-error {
     color: $red;
   }
+  &-title {
+    font-size: 3rem;
+    text-transform: capitalize;
+    word-spacing: 0;
+  }
 }
 .p {
   font-size: 1.7rem;
   line-height: 1.4;
+  max-width: 600px;
   &-note {
     color: #aaa;
     text-transform: uppercase;

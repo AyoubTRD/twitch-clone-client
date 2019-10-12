@@ -9,6 +9,7 @@
   justify-content: space-between;
   &__left {
     position: relative;
+    max-width: 70%;
     z-index: -2;
   }
   &__right {

@@ -131,10 +131,15 @@ body {
     text-align: center; }
   .h-error {
     color: #b10361; }
+  .h-title {
+    font-size: 3rem;
+    text-transform: capitalize;
+    word-spacing: 0; }
 
 .p {
   font-size: 1.7rem;
-  line-height: 1.4; }
+  line-height: 1.4;
+  max-width: 600px; }
   .p-note {
     color: #aaa;
     text-transform: uppercase; }
@@ -193,6 +198,7 @@ body {
   justify-content: space-between; }
   .stream__left {
     position: relative;
+    max-width: 70%;
     z-index: -2; }
   .stream__right {
     position: relative;
