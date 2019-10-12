@@ -6,7 +6,7 @@ import Stream from "./subComponents/Stream";
 
 class StreamList extends React.Component {
   showStreams = () => {
-    const { streams, id: userId } = this.props;
+    const { streams, id: userId, isSignedIn } = this.props;
     const streamsJsx = () => {
       const jsx = [];
       for (let i in streams) {
@@ -17,7 +17,7 @@ class StreamList extends React.Component {
             description={description}
             id={id}
             key={id}
-            ownStream={userId === id}
+            ownStream={userId === id && isSignedIn}
           />
         );
       }

@@ -8,7 +8,6 @@ import StreamList from "./StreamList";
 import StreamShow from "./StreamShow";
 import StreamCreate from "./StreamCreate";
 import StreamEdit from "./StreamEdit";
-import StreamDelete from "./StreamDelete";
 
 import Header from "./Header";
 
@@ -34,7 +33,6 @@ class App extends Component {
         {this.props.authReady ? (
           <Route path="/stream/edit" exact component={StreamEdit} />
         ) : null}
-        <Route path="/stream/delete" exact component={StreamDelete} />
         <Route path="/stream/create" exact component={StreamCreate} />
       </BrowserRouter>
     );

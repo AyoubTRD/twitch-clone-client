@@ -26,6 +26,9 @@ body {
   .container {
     padding: 1rem 0.5rem; } }
 
+.d-none {
+  display: none; }
+
 @keyframes shine {
   from {
     -webkit-mask-position: 150%;
@@ -36,7 +39,7 @@ body {
 
 .header {
   width: 100%;
-  background-color: #380438;
+  background-color: #370697;
   color: white;
   display: flex;
   align-items: center;
@@ -78,7 +81,7 @@ body {
   text-transform: uppercase;
   cursor: pointer; }
   .btn-main {
-    border: 2px solid #380438;
+    border: 2px solid #370697;
     transition: 0.4s;
     position: relative; }
     .btn-main::after {
@@ -89,7 +92,7 @@ body {
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: #380438;
+      background-color: #370697;
       clip-path: inset(100% 0 100% 0);
       transition: 0.4s; }
     .btn-main:hover {
@@ -99,26 +102,61 @@ body {
 
 .stream {
   margin: 2rem 1rem;
-  padding: 1rem;
+  padding: 1.5rem 2rem;
   box-shadow: 2px 1px 2rem rgba(0, 10, 10, 0.4);
   position: relative;
   border-radius: 4px;
-  transition: 0.4s; }
+  transition: 0.4s;
+  display: flex;
+  justify-content: space-between; }
+  .stream__left {
+    position: relative;
+    z-index: -2; }
+  .stream__right {
+    position: relative;
+    text-align: right;
+    z-index: 1;
+    width: 25rem; }
+  .stream__actions {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%); }
+  .stream__action {
+    padding: 1rem 2rem;
+    z-index: 10;
+    border: none;
+    transition: 0.6s;
+    border-radius: 4px;
+    font-size: 1.8rem;
+    transition: 0.6s;
+    margin: 0 1rem;
+    cursor: pointer; }
+    .stream__action:hover {
+      background-position: 100%; }
+    .stream__action-edit {
+      background: linear-gradient(to right, #8e2de2, #4a00e0, #8e2de2);
+      color: white;
+      background-size: 200%;
+      padding: 1rem 3rem; }
+    .stream__action-delete {
+      background: linear-gradient(to right, #c31432, #331846, #c31432);
+      color: white;
+      background-size: 200%; }
   .stream__title {
     text-transform: uppercase;
     font-weight: 400;
     margin-bottom: 0.5rem;
     letter-spacing: 1px;
-    color: #380438; }
+    color: #370697; }
   .stream__description {
     color: #231f20; }
   .stream:hover {
     transform: translateY(-0.5rem); }
-  .stream__actions {
-    z-index: 10; }
 
 .invisi-link {
-  z-index: 1;
+  z-index: -1;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -132,4 +170,10 @@ body {
   html {
     font-size: 50%; }
   .header__links {
-    padding: 1.5rem; } }
+    padding: 1.5rem; }
+  .stream__action {
+    padding: 1rem 2rem; } }
+
+@media only screen and (max-width: 500px) {
+  html {
+    font-size: 40%; } }
