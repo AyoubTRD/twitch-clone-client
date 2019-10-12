@@ -132,6 +132,11 @@ body {
   .h-error {
     color: #b10361; }
 
+.p-note {
+  color: #aaa;
+  font-size: 1.7rem;
+  text-transform: uppercase; }
+
 .form-body {
   background: #414042; }
   .form-body::after {
@@ -282,8 +287,6 @@ body {
     padding: 1.5rem; }
   .stream__action {
     padding: 1rem 2rem; }
-  .stream__left {
-    max-width: 60%; }
   .stream__right {
     width: 30rem; } }
 
@@ -291,6 +294,4 @@ body {
   html {
     font-size: 40%; }
   .stream__right {
-    width: 35rem; }
-  .stream__left {
-    max-width: 50%; } }
+    width: 35rem; } }

@@ -13,3 +13,10 @@
     color: $red;
   }
 }
+.p {
+  &-note {
+    color: #aaa;
+    font-size: 1.7rem;
+    text-transform: uppercase;
+  }
+}

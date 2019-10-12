@@ -30,12 +30,17 @@ class StreamList extends React.Component {
   };
 
   showCreateStreamLink = () => {
-    const { isSignedIn, isStreaming } = this.props;
-    if (isSignedIn && !isStreaming) {
+    const { isSignedIn } = this.props;
+    if (isSignedIn) {
       return (
-        <Link className="btn btn-link" to="/stream/create">
-          Create a stream
-        </Link>
+        <div>
+          <Link className="btn btn-link" to="/stream/create">
+            Create a stream
+          </Link>
+          <p className="p-note p">
+            note: You can only create a single stream!
+          </p>
+        </div>
       );
     }
   };

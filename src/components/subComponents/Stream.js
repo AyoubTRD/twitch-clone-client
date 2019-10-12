@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { deleteStream } from "../../actions";
+import { deleteStream, stream } from "../../actions";
 import StreamDelete from "./StreamDelete";
 
 class Stream extends React.Component {
@@ -29,6 +29,9 @@ class Stream extends React.Component {
       userId,
       isSignedIn
     } = this.props;
+    if (ownStream && isSignedIn && userId === id) {
+      stream({ title, description, id });
+    }
     return (
       <div>
         <div className="stream">
@@ -79,5 +82,5 @@ export default connect(
       profile: { id: userId }
     }
   }) => ({ ownStream, isSignedIn, userId }),
-  { deleteStream }
+  { deleteStream, stream }
 )(Stream);

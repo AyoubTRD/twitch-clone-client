@@ -14,6 +14,7 @@ import Header from "./Header";
 import MustLogin from "./subComponents/MustLogin";
 import AlreadyStreaming from "./subComponents/AlreadyStreaming";
 import MustCreateToEdit from "./subComponents/MustCreateToEdit";
+import Error from "./subComponents/error";
 
 import history from "../history";
 
@@ -67,6 +68,7 @@ class App extends Component {
         <Route path="/error/login" exact component={MustLogin} />
         <Route path="/error/streaming" exact component={AlreadyStreaming} />
         <Route path="/error/edit" component={MustCreateToEdit} />
+        <Route path="/error" component={Error} />
       </Router>
     );
   }

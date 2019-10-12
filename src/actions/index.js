@@ -47,43 +47,55 @@ export const createStream = streamInfo => async dispatch => {
     });
     history.push("/");
   } catch (err) {
-    console.log(err);
+    history.push("/error");
   }
 };
 
 export const editStream = newStream => async dispatch => {
   try {
-    await streamApi.put("/strems", newStream);
+    await streamApi.put("/streams", newStream);
     dispatch({
       type: EDIT_STREAM,
       payload: newStream
     });
     history.push("/");
   } catch (err) {
-    console.log(err);
+    history.push("/error");
   }
 };
 export const getStreams = cb => async dispatch => {
-  const res = await streamApi.get("/streams");
-  dispatch({
-    type: GET_STREAMS,
-    payload: res.data
-  });
-  cb(res.data);
+  try {
+    const res = await streamApi.get("/streams");
+    dispatch({
+      type: GET_STREAMS,
+      payload: res.data
+    });
+    cb(res.data);
+  } catch (err) {
+    history.push("/error");
+  }
 };
 
 export const getStream = id => async dispatch => {
-  const res = await streamApi.get(`/streams/${id}`);
-  dispatch({
-    type: GET_STREAM,
-    payload: res.data
-  });
+  try {
+    const res = await streamApi.get(`/streams/${id}`);
+    dispatch({
+      type: GET_STREAM,
+      payload: res.data
+    });
+  } catch (error) {
+    history.push("/error");
+  }
 };
 
 export const deleteStream = id => async dispatch => {
-  await streamApi.delete(`/streams/${id}`);
-  dispatch({
-    type: DELETE_STREAM,
-    payload: id
-  });
+  try {
+    await streamApi.delete(`/streams/${id}`);
+    dispatch({
+      type: DELETE_STREAM,
+      payload: id
+    });
+  } catch (error) {
+    history.push("/error");
+  }
 };

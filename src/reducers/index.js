@@ -30,7 +30,10 @@ const createStream = (state = {}, { type, payload }) => {
     case CREATE_STREAM:
       return payload;
     case STREAM:
-      return payload;
+      if (payload) {
+        return payload;
+      }
+      return state;
     case EDIT_STREAM:
       return payload;
     default:
@@ -56,7 +59,7 @@ const streamsReducer = (state = {}, { type, payload }) => {
   }
 };
 
-const isStreamingReducer = (state = false, { type }) => {
+const isStreamingReducer = (state = false, { type, payload }) => {
   switch (type) {
     case CREATE_STREAM:
       return true;
@@ -64,6 +67,8 @@ const isStreamingReducer = (state = false, { type }) => {
       return false;
     case STREAM:
       return true;
+    case AUTHENTICATE:
+      return false;
     default:
       return state;
   }
