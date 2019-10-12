@@ -30,6 +30,9 @@ body {
 .d-none {
   display: none !important; }
 
+.u-center {
+  text-align: center; }
+
 @keyframes shine {
   from {
     -webkit-mask-position: 150%;
@@ -108,7 +111,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     display: inline-block;
-    margin: 2rem 0; }
+    margin-bottom: 1rem; }
     .btn-link:hover {
       background-color: #370697;
       color: white; }
@@ -123,6 +126,8 @@ body {
   margin: 2rem 0; }
   .h-center {
     text-align: center; }
+  .h-error {
+    color: #b10361; }
 
 .form-body {
   background-color: #782fef; }

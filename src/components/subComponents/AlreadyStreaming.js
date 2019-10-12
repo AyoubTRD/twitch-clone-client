@@ -1,11 +1,9 @@
 import React from "react";
 
-function MustLogin() {
+export default function() {
   return (
     <h1 className="h h-center h-error">
-      You must login to perform this action
+      You cannot create two streams at the same time
     </h1>
   );
 }
-
-export default MustLogin;
