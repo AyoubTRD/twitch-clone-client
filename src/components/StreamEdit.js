@@ -9,6 +9,7 @@ import renderInput from "./subComponents/inputField.js";
 class StreamEdit extends Component {
   state = { redirect: false };
   componentDidMount() {
+    document.body.classList.add("form-body");
     const {
       initialize,
       ownStream: { description, title }
@@ -17,6 +18,9 @@ class StreamEdit extends Component {
       description,
       title
     });
+  }
+  componentWillUnmount() {
+    document.body.classList.remove("form-body");
   }
   onSubmit = formValues => {
     const { editStream, id } = this.props;
@@ -30,27 +34,32 @@ class StreamEdit extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div>
+      <div className="container form-container">
+        <h1 className="h h-center h-form">Edit stream</h1>
         <form className="form" onSubmit={handleSubmit(this.onSubmit)}>
-          <div className="form__box">
+          <div className="form-box">
             <Field
               name="title"
               component={renderInput}
               info={{
                 type: "text",
                 name: "title",
-                placeholder: "title"
+                placeholder: "title",
+                id: "title",
+                label: "Enter new title:"
               }}
             />
           </div>
-          <div className="form__box">
+          <div className="form-box">
             <Field
               name="description"
               component={renderInput}
               info={{
                 type: "text",
                 name: "description",
-                placeholder: "description"
+                id: "description",
+                placeholder: "description",
+                label: "Enter new description:"
               }}
             />
           </div>

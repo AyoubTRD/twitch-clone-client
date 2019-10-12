@@ -1,0 +1,12 @@
+.h {
+  font-size: 5rem;
+  text-transform: uppercase;
+  color: $main-color;
+  font-weight: 300;
+  letter-spacing: 1px;
+  word-spacing: 15px;
+  margin: 2rem 0;
+  &-center {
+    text-align: center;
+  }
+}

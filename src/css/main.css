@@ -12,7 +12,8 @@ html {
 
 body {
   font-size: 1.6rem;
-  color: #231f20; }
+  color: #231f20;
+  min-height: 100vh; }
 
 .clearfix::after {
   display: table;
@@ -106,10 +107,55 @@ body {
     border-radius: 4px;
     font-weight: 700;
     text-transform: uppercase;
+    display: inline-block;
     margin: 2rem 0; }
     .btn-link:hover {
       background-color: #370697;
       color: white; }
+
+.h {
+  font-size: 5rem;
+  text-transform: uppercase;
+  color: #370697;
+  font-weight: 300;
+  letter-spacing: 1px;
+  word-spacing: 15px;
+  margin: 2rem 0; }
+  .h-center {
+    text-align: center; }
+
+.form-body {
+  background-color: #782fef; }
+
+.form {
+  background-color: white;
+  width: 300px;
+  max-width: 90%;
+  border-radius: 10px;
+  box-shadow: 2 2px 0 2px rgba(255, 255, 255, 0.3);
+  margin: 10rem auto;
+  text-align: center;
+  padding: 2rem 2rem; }
+  .form-box {
+    margin-bottom: 2rem; }
+  .form__input {
+    border: 1px solid #370697;
+    width: 100%;
+    height: 3rem;
+    padding: 1rem;
+    border-radius: 4px; }
+  .form__error {
+    color: #b10361;
+    text-align: left;
+    margin-top: 3px; }
+  .form__label {
+    text-align: left;
+    display: block;
+    color: #370697;
+    margin-bottom: 3px; }
+
+.h-form {
+  color: white; }
 
 .stream {
   margin: 2rem 1rem;

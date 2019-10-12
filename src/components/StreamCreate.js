@@ -7,22 +7,29 @@ import { createStream } from "../actions";
 import renderInput from "./subComponents/inputField";
 
 class StreamCreate extends Component {
-  state = {redirect: false}
+  state = { redirect: false };
+
+  componentDidMount() {
+    document.body.classList.add("form-body");
+  }
+  componentWillUnmount() {
+    document.body.classList.remove("form-body");
+  }
 
   onSubmit = formValues => {
     const { createStream, id } = this.props;
     const streamInfo = { ...formValues, id };
     createStream(streamInfo);
-    this.setState({redirect: true})
+    this.setState({ redirect: true });
   };
 
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div className="container">
-        <h1>Create a stream</h1>
+      <div className="container form-container">
+        <h1 className="h-center h h-form">Create a stream</h1>
         <form
-          className="create-form form"
+          className="form-center form"
           onSubmit={handleSubmit(this.onSubmit)}
         >
           <div className="form-box">
@@ -33,7 +40,8 @@ class StreamCreate extends Component {
                 name: "title",
                 placeholder: "title",
                 type: "text",
-                id: "title"
+                id: "title",
+                label: "Enter title:"
               }}
             />
           </div>
@@ -45,17 +53,16 @@ class StreamCreate extends Component {
                 name: "description",
                 placeholder: "description",
                 type: "text",
-                id: "description"
+                id: "description",
+                label: "Enter description:"
               }}
             />
           </div>
-          <button type="submit" className="btn btn-main form__submit">
+          <button type="submit" className="btn btn-main">
             Create
           </button>
         </form>
-        {this.state.redirect ? 
-        <Redirect to="/" /> : null  
-      }
+        {this.state.redirect ? <Redirect to="/" /> : null}
       </div>
     );
   }
