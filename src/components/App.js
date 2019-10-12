@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter, Route, Redirect } from "react-router-dom";
+import { Router, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { getStreams, stream as streamAction } from "../actions";
@@ -14,6 +14,8 @@ import Header from "./Header";
 import MustLogin from "./subComponents/MustLogin";
 import AlreadyStreaming from "./subComponents/AlreadyStreaming";
 import MustCreateToEdit from "./subComponents/MustCreateToEdit";
+
+import history from "../history";
 
 class App extends Component {
   state = {
@@ -49,7 +51,7 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Header />
         {this.state.streamsReady ? (
           <Route path="/" exact component={StreamList} />
@@ -65,7 +67,7 @@ class App extends Component {
         <Route path="/error/login" exact component={MustLogin} />
         <Route path="/error/streaming" exact component={AlreadyStreaming} />
         <Route path="/error/edit" component={MustCreateToEdit} />
-      </BrowserRouter>
+      </Router>
     );
   }
 }

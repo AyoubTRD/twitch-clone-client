@@ -32,7 +32,7 @@ class Stream extends React.Component {
     return (
       <div>
         <div className="stream">
-          <Link className="invisi-link" to={`/streams/${id}`} />
+          <Link className="invisi-link" to={`/stream/show/${id}`} />
 
           <div
             className={`stream__left ${

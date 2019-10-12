@@ -9,6 +9,7 @@ import {
   AUTHREADY
 } from "./types";
 import streamApi from "../api/streams";
+import history from "../history";
 
 export const authenticate = (isSignedIn, info) => {
   info = info.getBasicProfile();
@@ -38,13 +39,30 @@ export const stream = stream => ({
 });
 
 export const createStream = streamInfo => async dispatch => {
-  await streamApi.post("/streams", streamInfo);
-  dispatch({
-    type: CREATE_STREAM,
-    payload: streamInfo
-  });
+  try {
+    await streamApi.post("/streams", streamInfo);
+    dispatch({
+      type: CREATE_STREAM,
+      payload: streamInfo
+    });
+    history.push("/");
+  } catch (err) {
+    console.log(err);
+  }
 };
 
+export const editStream = newStream => async dispatch => {
+  try {
+    await streamApi.put("/strems", newStream);
+    dispatch({
+      type: EDIT_STREAM,
+      payload: newStream
+    });
+    history.push("/");
+  } catch (err) {
+    console.log(err);
+  }
+};
 export const getStreams = cb => async dispatch => {
   const res = await streamApi.get("/streams");
   dispatch({
@@ -59,14 +77,6 @@ export const getStream = id => async dispatch => {
   dispatch({
     type: GET_STREAM,
     payload: res.data
-  });
-};
-
-export const editStream = newStream => async dispatch => {
-  await streamApi.put("/streams", newStream);
-  dispatch({
-    type: EDIT_STREAM,
-    payload: newStream
   });
 };
 
