@@ -97,6 +97,37 @@ body {
     .btn-main:hover::after {
       clip-path: inset(0); }
 
+.stream {
+  margin: 2rem 1rem;
+  padding: 1rem;
+  box-shadow: 2px 1px 2rem rgba(0, 10, 10, 0.4);
+  position: relative;
+  border-radius: 4px;
+  transition: 0.4s; }
+  .stream__title {
+    text-transform: uppercase;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+    color: #380438; }
+  .stream__description {
+    color: #231f20; }
+  .stream:hover {
+    transform: translateY(-0.5rem); }
+  .stream__actions {
+    z-index: 10; }
+
+.invisi-link {
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  border-radius: inherit; }
+
 @media only screen and (max-width: 700px) {
   html {
     font-size: 50%; }

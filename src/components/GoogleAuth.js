@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { authenticate } from "../actions";
+import { authenticate, stream, authReady } from "../actions";
 
 const gapi = window.gapi;
 
@@ -22,15 +22,22 @@ class GoogleAuth extends React.Component {
           this.setState({ isReady: true });
           this.authListener();
           this.auth.isSignedIn.listen(this.authListener);
+          this.props.authReady();
         });
     });
   }
 
   authListener = () => {
-    this.props.authenticate(
-      this.auth.isSignedIn.get(),
-      this.auth.currentUser.get()
-    );
+    const isSignedIn = this.auth.isSignedIn.get();
+    const user = this.auth.currentUser.get();
+    this.props.authenticate(isSignedIn, user);
+    const { streams } = this.props;
+    if (isSignedIn) {
+      const id = user.getId();
+      if (streams[id]) {
+        this.props.stream(streams[id]);
+      }
+    }
   };
 
   handleClick = async () => {
@@ -66,9 +73,9 @@ class GoogleAuth extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({ user });
+const mapStateToProps = ({ user, streams }) => ({ user, streams });
 
 export default connect(
   mapStateToProps,
-  { authenticate }
+  { authenticate, stream, authReady }
 )(GoogleAuth);

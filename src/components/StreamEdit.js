@@ -6,8 +6,19 @@ import { editStream } from "../actions";
 import renderInput from "./subComponents/inputField.js";
 
 class StreamEdit extends Component {
+  componentDidMount() {
+    const {
+      initialize,
+      ownStream: { description, title }
+    } = this.props;
+    initialize({
+      description,
+      title
+    });
+  }
   onSubmit = formValues => {
     const { editStream, id } = this.props;
+    console.log("submitting");
     editStream({
       ...formValues,
       id
@@ -18,7 +29,7 @@ class StreamEdit extends Component {
     return (
       <div>
         <form className="form" onSubmit={handleSubmit(this.onSubmit)}>
-          <div class="form__box">
+          <div className="form__box">
             <Field
               name="title"
               component={renderInput}
@@ -29,7 +40,7 @@ class StreamEdit extends Component {
               }}
             />
           </div>
-          <div class="form__box">
+          <div className="form__box">
             <Field
               name="description"
               component={renderInput}
@@ -40,7 +51,9 @@ class StreamEdit extends Component {
               }}
             />
           </div>
-          <button className="btn btn-main">edit</button>
+          <button type="submit" className="btn btn-main">
+            edit
+          </button>
         </form>
       </div>
     );
@@ -55,6 +68,7 @@ const validate = ({ description, title }) => {
   if (!description) {
     errors.description = "You must provide a description";
   }
+  return errors;
 };
 
 const compWrap = reduxForm({
@@ -63,11 +77,11 @@ const compWrap = reduxForm({
 })(StreamEdit);
 
 const mapStateToProps = ({
-  stream,
+  ownStream,
   user: {
     profile: { id }
   }
-}) => ({ stream, id });
+}) => ({ ownStream, id });
 
 export default connect(
   mapStateToProps,

@@ -7,7 +7,9 @@ import {
   GET_STREAMS,
   GET_STREAM,
   EDIT_STREAM,
-  DELETE_STREAM
+  DELETE_STREAM,
+  STREAM,
+  AUTHREADY
 } from "../actions/types";
 
 const loginReducer = (state = { profile: {} }, action) => {
@@ -23,17 +25,45 @@ const loginReducer = (state = { profile: {} }, action) => {
   }
 };
 
-const streamsReducer = (state = {}, { type, payload }) => {
-  const { id } = payload;
-  payload = { ...payload, id: undefined };
+const createStream = (state = {}, { type, payload }) => {
+  switch (type) {
+    case CREATE_STREAM:
+      return payload;
+    case STREAM:
+      return payload;
+    case EDIT_STREAM:
+      return payload;
+    default:
+      return state;
+  }
+};
 
+const streamsReducer = (state = {}, { type, payload }) => {
   switch (type) {
     case GET_STREAMS:
       return payload;
-    case CREATE_STREAM || EDIT_STREAM:
+    case CREATE_STREAM:
+      const { id } = payload;
       return { ...state, [id]: payload };
+    case EDIT_STREAM: {
+      const { id } = payload;
+      return { ...state, [id]: payload };
+    }
     case DELETE_STREAM:
-      return { ...state, [id]: undefined };
+      return { ...state, [payload.id]: undefined };
+    default:
+      return state;
+  }
+};
+
+const isStreamingReducer = (state = false, { type }) => {
+  switch (type) {
+    case CREATE_STREAM:
+      return true;
+    case DELETE_STREAM:
+      return false;
+    case STREAM:
+      return !state;
     default:
       return state;
   }
@@ -48,18 +78,10 @@ const streamReducer = (state = {}, { type, payload }) => {
   }
 };
 
-const createStream = (state = { isStreaming: false }, action) => {
-  switch (action.type) {
-    case CREATE_STREAM:
-      return {
-        isStreaming: true,
-        info: action.payload
-      };
-    case EDIT_STREAM:
-      return {
-        isStreaming: true,
-        info: action.payload
-      };
+const authReadyReducer = (state = false, { type }) => {
+  switch (type) {
+    case AUTHREADY:
+      return true;
     default:
       return state;
   }
@@ -70,5 +92,7 @@ export default combineReducers({
   user: loginReducer,
   ownStream: createStream,
   streams: streamsReducer,
-  currentStream: streamReducer
+  isStreaming: isStreamingReducer,
+  currentStream: streamReducer,
+  authReady: authReadyReducer
 });

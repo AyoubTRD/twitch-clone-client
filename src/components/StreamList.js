@@ -2,7 +2,31 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import Stream from "./subComponents/Stream";
+
 class StreamList extends React.Component {
+  showStreams = () => {
+    const { streams, id: userId } = this.props;
+    const streamsJsx = () => {
+      const jsx = [];
+      for (let i in streams) {
+        const { title, description, id } = streams[i];
+        jsx.push(
+          <Stream
+            title={title}
+            description={description}
+            id={id}
+            key={id}
+            ownStream={userId === id}
+          />
+        );
+      }
+      return [jsx];
+    };
+    const jsx = streamsJsx();
+    return <div className="streams">{jsx.map(str => str)}</div>;
+  };
+
   showCreateStreamLink = () => {
     const { isSignedIn } = this.props;
     if (isSignedIn) {
@@ -16,14 +40,24 @@ class StreamList extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         {this.showCreateStreamLink()}
-        <h1>StreamList</h1>
+        {this.showStreams()}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ isSignedIn: state.user.isSignedIn });
+const mapStateToProps = ({
+  streams,
+  user: {
+    isSignedIn,
+    profile: { id }
+  }
+}) => ({
+  streams,
+  isSignedIn,
+  id
+});
 
 export default connect(mapStateToProps)(StreamList);
