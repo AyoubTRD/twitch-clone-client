@@ -181,7 +181,8 @@ body {
     position: relative;
     text-align: right;
     z-index: 0;
-    width: 25rem; }
+    width: 25rem;
+    pointer-events: none; }
   .stream__actions {
     position: absolute;
     top: 50%;
@@ -197,7 +198,8 @@ body {
     font-size: 1.8rem;
     transition: 0.6s;
     margin: 0 1rem;
-    cursor: pointer; }
+    cursor: pointer;
+    pointer-events: all; }
     .stream__action:hover {
       background-position: 100%; }
     .stream__action-edit {
