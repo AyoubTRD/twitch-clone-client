@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { editStream } from "../actions";
 import renderInput from "./subComponents/inputField.js";
 
 class StreamEdit extends Component {
+  state = { redirect: false };
   componentDidMount() {
     const {
       initialize,
@@ -23,6 +25,7 @@ class StreamEdit extends Component {
       ...formValues,
       id
     });
+    this.setState({ redirect: true });
   };
   render() {
     const { handleSubmit } = this.props;
@@ -55,6 +58,7 @@ class StreamEdit extends Component {
             edit
           </button>
         </form>
+        {this.state.redirect ? <Redirect to="/" /> : null}
       </div>
     );
   }

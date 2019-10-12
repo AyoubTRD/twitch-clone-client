@@ -27,7 +27,7 @@ body {
     padding: 1rem 0.5rem; } }
 
 .d-none {
-  display: none; }
+  display: none !important; }
 
 @keyframes shine {
   from {
@@ -36,6 +36,16 @@ body {
   to {
     -webkit-mask-position: -50%;
     mask-position: -50%; } }
+
+@keyframes goUp {
+  from {
+    opacity: 0.3;
+    transform: translateY(5rem); }
+  80% {
+    opacity: 1;
+    transform: translateY(-1rem); }
+  to {
+    transform: translateY(0); } }
 
 .header {
   width: 100%;
@@ -74,31 +84,32 @@ body {
         background-color: rgba(255, 255, 255, 0.25); }
 
 .btn {
-  padding: 15px 30px;
+  color: white;
+  padding: 1rem 3rem;
+  transition: 0.4s;
+  padding: 1rem 3.5rem;
   border: none;
-  background: transparent;
-  font-size: 1.8rem;
-  text-transform: uppercase;
-  cursor: pointer; }
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1.6rem; }
+  .btn:hover {
+    background-position: 100%; }
+  .btn-delete {
+    background: linear-gradient(to right, #c31432, #331846, #c31432);
+    background-size: 200%; }
   .btn-main {
+    background: linear-gradient(to right, #8e2de2, #4a00e0, #8e2de2);
+    background-size: 200%; }
+  .btn-link {
+    color: #370697;
     border: 2px solid #370697;
-    transition: 0.4s;
-    position: relative; }
-    .btn-main::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 2rem 0; }
+    .btn-link:hover {
       background-color: #370697;
-      clip-path: inset(100% 0 100% 0);
-      transition: 0.4s; }
-    .btn-main:hover {
       color: white; }
-    .btn-main:hover::after {
-      clip-path: inset(0); }
 
 .stream {
   margin: 2rem 1rem;
@@ -165,6 +176,39 @@ body {
   width: 100%;
   height: 100%;
   border-radius: inherit; }
+
+.delete-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.delete {
+  background-color: white;
+  width: 400px;
+  max-width: 95%;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 2rem rgba(55, 6, 151, 0.4);
+  animation: goUp 0.9s; }
+  .delete__msg {
+    margin-bottom: 5rem;
+    color: #370697;
+    font-size: 2.2rem;
+    text-transform: uppercase; }
+  .delete__actions {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto; }
 
 @media only screen and (max-width: 700px) {
   html {

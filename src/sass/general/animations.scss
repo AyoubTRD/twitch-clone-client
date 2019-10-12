@@ -9,3 +9,17 @@
     mask-position: -50%;
   }
 }
+
+@keyframes goUp {
+  from {
+    opacity: 0.3;
+    transform: translateY(5rem);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-1rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

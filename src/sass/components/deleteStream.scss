@@ -1,8 +1,35 @@
 .delete-container {
   position: fixed;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.delete {
+  background-color: $white;
+  width: 400px;
+  max-width: 95%;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 2rem rgba($main-color, 0.4);
+  animation: goUp 0.9s;
+  &__msg {
+    margin-bottom: 5rem;
+    color: $main-color;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+  }
+  &__actions {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+  }
 }

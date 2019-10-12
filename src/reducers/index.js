@@ -50,7 +50,7 @@ const streamsReducer = (state = {}, { type, payload }) => {
       return { ...state, [id]: payload };
     }
     case DELETE_STREAM:
-      return { ...state, [payload.id]: undefined };
+      return { ...state, [payload]: undefined };
     default:
       return state;
   }

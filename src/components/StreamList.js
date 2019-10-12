@@ -10,28 +10,30 @@ class StreamList extends React.Component {
     const streamsJsx = () => {
       const jsx = [];
       for (let i in streams) {
-        const { title, description, id } = streams[i];
-        jsx.push(
-          <Stream
-            title={title}
-            description={description}
-            id={id}
-            key={id}
-            ownStream={userId === id && isSignedIn}
-          />
-        );
+        if (streams[i]) {
+          const { title, description, id } = streams[i];
+          jsx.push(
+            <Stream
+              title={title}
+              description={description}
+              id={id}
+              key={id}
+              ownStream={userId === id && isSignedIn}
+            />
+          );
+        }
       }
-      return [jsx];
+      return jsx;
     };
     const jsx = streamsJsx();
     return <div className="streams">{jsx.map(str => str)}</div>;
   };
 
   showCreateStreamLink = () => {
-    const { isSignedIn } = this.props;
-    if (isSignedIn) {
+    const { isSignedIn, isStreaming } = this.props;
+    if (isSignedIn && !isStreaming) {
       return (
-        <Link className="btn link-btn" to="/stream/create">
+        <Link className="btn btn-link" to="/stream/create">
           Create a stream
         </Link>
       );
@@ -53,11 +55,13 @@ const mapStateToProps = ({
   user: {
     isSignedIn,
     profile: { id }
-  }
+  },
+  isStreaming
 }) => ({
   streams,
   isSignedIn,
-  id
+  id,
+  isStreaming
 });
 
 export default connect(mapStateToProps)(StreamList);

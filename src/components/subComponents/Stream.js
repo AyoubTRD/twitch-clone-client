@@ -13,11 +13,13 @@ class Stream extends React.Component {
     this.setState({ showDelete: true });
   };
   handleDelete = () => {
-    
-  }
+    const { deleteStream, id } = this.props;
+    deleteStream(id);
+    this.setState({ showDelete: false });
+  };
   handleCancel = () => {
-    this.setState({showDelete: false})
-  }
+    this.setState({ showDelete: false });
+  };
   render() {
     const {
       title,
@@ -28,32 +30,38 @@ class Stream extends React.Component {
       isSignedIn
     } = this.props;
     return (
-      <div className="stream">
-        <Link className="invisi-link" to={`/streams/${id}`} children="" />
+      <div>
+        <div className="stream">
+          <Link className="invisi-link" to={`/streams/${id}`} children="" />
 
-        <div className="stream__left">
-          <h2 className="stream__title">{title}</h2>
-          <p className="stream__description">{description}</p>
+          <div className="stream__left">
+            <h2 className="stream__title">{title}</h2>
+            <p className="stream__description">{description}</p>
+          </div>
+          <div className="stream__right">
+            {ownStream && isSignedIn && userId === id ? (
+              <div className="stream__actions">
+                <Link
+                  to="/stream/edit"
+                  className="stream__action stream__action-edit"
+                >
+                  Edit
+                </Link>
+                <button
+                  onClick={this.showDeleteComp}
+                  className="stream__action stream__action-delete"
+                >
+                  Delete
+                </button>
+              </div>
+            ) : null}
+          </div>
         </div>
-        <div className="stream__right">
-          {ownStream && isSignedIn && userId === id ? (
-            <div className="stream__actions">
-              <Link
-                to="/stream/edit"
-                className="stream__action stream__action-edit"
-              >
-                Edit
-              </Link>
-              <button
-                onClick={this.showDeleteComp}
-                className="stream__action stream__action-delete"
-              >
-                Delete
-              </button>
-            </div>
-          ) : null}
-          <StreamDelete handleDelete={this.handleDelete} handleCancel={this.handleCancel} showDelete={this.state.showDelete} />
-        </div>
+        <StreamDelete
+          handleDelete={this.handleDelete}
+          handleCancel={this.handleCancel}
+          showDelete={this.state.showDelete}
+        />
       </div>
     );
   }

@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { createStream } from "../actions";
 import renderInput from "./subComponents/inputField";
 
 class StreamCreate extends Component {
+  state = {redirect: false}
+
   onSubmit = formValues => {
     const { createStream, id } = this.props;
     const streamInfo = { ...formValues, id };
     createStream(streamInfo);
+    this.setState({redirect: true})
   };
 
   render() {
@@ -49,6 +53,9 @@ class StreamCreate extends Component {
             Create
           </button>
         </form>
+        {this.state.redirect ? 
+        <Redirect to="/" /> : null  
+      }
       </div>
     );
   }

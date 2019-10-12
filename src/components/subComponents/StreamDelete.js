@@ -6,12 +6,20 @@ class StreamDelete extends Component {
     return (
       <div className={`delete-container ${showDelete ? "" : "d-none"}`}>
         <div className="delete">
-          <button className="delete__delete" onClick={this.props.handleDelete}>
-            delete
-          </button>
-          <button className="delete__cancel" onClick={this.props.handleCancel}>
-            cancel
-          </button>
+          <p className="delete__msg">
+            Are you sure you want to delete the stream?
+          </p>
+          <div className="delete__actions">
+            <button
+              className="btn btn-delete"
+              onClick={this.props.handleDelete}
+            >
+              delete
+            </button>
+            <button className="btn btn-main" onClick={this.props.handleCancel}>
+              cancel
+            </button>
+          </div>
         </div>
       </div>
     );
