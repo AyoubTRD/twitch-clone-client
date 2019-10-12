@@ -269,10 +269,12 @@ body {
   .header__links {
     padding: 1.5rem; }
   .stream__action {
-    padding: 1rem 2rem; } }
+    padding: 1rem 2rem; }
+  .stream__right {
+    width: 30rem; } }
 
 @media only screen and (max-width: 500px) {
   html {
     font-size: 40%; }
-  .form__right {
-    width: 30rem; } }
+  .stream__right {
+    width: 35rem; } }
