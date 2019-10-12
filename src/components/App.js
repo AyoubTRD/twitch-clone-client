@@ -68,7 +68,7 @@ class App extends Component {
         <Route path="/error/login" exact component={MustLogin} />
         <Route path="/error/streaming" exact component={AlreadyStreaming} />
         <Route path="/error/edit" component={MustCreateToEdit} />
-        <Route path="/error" component={Error} />
+        <Route path="/error" exact component={Error} />
       </Router>
     );
   }

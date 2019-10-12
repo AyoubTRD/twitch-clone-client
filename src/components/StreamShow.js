@@ -13,9 +13,11 @@ class StreamShow extends React.Component {
     this.props.getStream(id);
   }
   render() {
+    const { title, description } = this.props.stream;
     return (
-      <div>
-        <h1>StreamShow</h1>
+      <div className="container">
+        <h1 className="h">{title}</h1>
+        <p className="p">{description}</p>
       </div>
     );
   }

@@ -132,10 +132,12 @@ body {
   .h-error {
     color: #b10361; }
 
-.p-note {
-  color: #aaa;
+.p {
   font-size: 1.7rem;
-  text-transform: uppercase; }
+  line-height: 1.4; }
+  .p-note {
+    color: #aaa;
+    text-transform: uppercase; }
 
 .form-body {
   background: #414042; }
