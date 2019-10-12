@@ -63,7 +63,7 @@ const isStreamingReducer = (state = false, { type }) => {
     case DELETE_STREAM:
       return false;
     case STREAM:
-      return !state;
+      return true;
     default:
       return state;
   }
